@@ -1,0 +1,58 @@
+<div class="box mb-5">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+      <span (click)="reset()" class="color-label"> Calcula </span>
+      <span (click)="reset()" class="color-label-final"> tor </span>
+      <img
+        (click)="reset()"
+        class="pl-3"
+        src="../../assets/images/icons/logo.svg"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="box-buttons">
+    <div class="dropdown show">
+      <a
+        class="btn btn-secondary dropdown-toggle my-drop"
+        href="#"
+        role="button"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <span *ngIf="!selectedItem"> Selecione uma opção:</span>
+        <span *ngIf="selectedItem"> {{ selectedItem }} </span>
+      </a>
+
+      <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuLink">
+        <a
+          *ngFor="let item of teste"
+          class="dropdown-item d-flex align-items-center"
+          (click)="selectedView(item.id)"
+        >
+          <div class="dropdown-label">
+            {{ item.name }}
+          </div>
+          <div>
+            <img width="35px" class="pl-2" src="{{ item.image }}" alt="" />
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <button class="button-reset" (click)="reset()">Limpar campos</button>
+    </div>
+  </div>
+
+  <app-calcular-pisos *ngIf="visualizarPiso"></app-calcular-pisos>
+
+  <app-calcular-blocos *ngIf="visualizarBloco"></app-calcular-blocos>
+
+  <app-calcular-telhas *ngIf="visualizarTelha"></app-calcular-telhas>
+</div>
