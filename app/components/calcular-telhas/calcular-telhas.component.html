@@ -1,0 +1,155 @@
+<div class="telhas-box pb-3">
+  <form [formGroup]="formTelhas" *ngIf="formTelhas">
+    <div class="telhas-div pt-3">
+      <div class="div">
+        <div *ngIf="!largura?.pristine && largura?.errors">
+          <p class="error-label" *ngIf="largura?.errors?.required">
+            Largura é obrigatório*.
+          </p>
+        </div>
+
+        <div class="input-box pb-3">
+          <label class="input-title" for="nome">Digite a Largura: </label>
+          <input
+            class="input-style"
+            type="number"
+            formControlName="largura"
+            id="larguraTelha"
+            placeholder="Digite a Largura"
+          />
+        </div>
+
+        <div class="pt-3" *ngIf="!comprimento?.pristine && comprimento?.errors">
+          <p class="error-label" *ngIf="comprimento?.errors?.required">
+            comprimento é obrigatório*.
+          </p>
+        </div>
+
+        <div class="input-box pb-2">
+          <label class="input-title" for="email">Digite o Comprimento: </label>
+          <input
+            class="input-style"
+            type="number"
+            formControlName="comprimento"
+            id="comprimentoBloco"
+            placeholder="Digite o  comprimento"
+          />
+        </div>
+
+        <div
+          class="d-flex flex-column"
+          [ngClass]="[telhaResult ? 'pt-3 pb-3' : 'pt-3 ']"
+        >
+          <button
+            [disabled]="!formTelhas.valid"
+            [ngClass]="!formTelhas.valid ? 'button-disabled' : 'button-send'"
+            class="w-100"
+            (click)="calcularTelhas()"
+          >
+            Calcular a quantidade de metros quadrados
+          </button>
+
+          <div class="d-flex flex-column pt-3" *ngIf="telhaResult">
+            <span class="set-size"> A quantidade de metros quadrados é: </span>
+            <span class="metros-quadrados"> {{ telhaResult }} m² </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="div box2">
+        <div class="d-flex flex-column" *ngIf="telhaResult">
+          <label class="set-size" for="email">Selecione a caida </label>
+
+          <div class="dropdown show">
+            <a
+              class="btn btn-secondary dropdown-toggle my-drop dropdown-box w-100"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span *ngIf="!selectedItem"> Caida</span>
+              <span *ngIf="selectedItem"> {{ selectedItem }} </span>
+            </a>
+
+            <div
+              class="dropdown-menu p-0 w-100"
+              aria-labelledby="dropdownMenuLink"
+            >
+              <a
+                *ngFor="let item of listaCaida"
+                class="dropdown-item d-flex align-items-center"
+                (click)="selecionarCaida(item)"
+              >
+                <div class="dropdown-label">
+                  {{ item.name }}
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <button
+            *ngIf="valorCaida"
+            class="mt-3 w-100"
+            [ngClass]="!telhaResult ? 'button-disabled' : 'button-send'"
+            (click)="calcularAreaTotal()"
+          >
+            Calcular area total
+          </button>
+        </div>
+
+        <h2 class="d-flex flex-column pt-3" *ngIf="areaTotal">
+          <span class="set-size"> Àrea total é de: </span>
+          <span class="metros-quadrados"> {{ areaTotal }} m² </span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column" *ngIf="areaTotal">
+      <div class="input-box pb-2 pt-1">
+        <label class="set-size" for="email">
+          Digite quantas telhas serão usadas por m²:
+        </label>
+        <input
+          class="input-style"
+          type="number"
+          formControlName="numeroTelhas"
+          id="numeroTelhas"
+          placeholder="Telhas por m²"
+        />
+      </div>
+
+      <button class="mt-3 button-send" (click)="calcularTotalTelhas()">
+        Calcular total de telhas
+      </button>
+    </div>
+
+    <div *ngIf="totalTelhas" class="d-flex flex-column pt-3">
+      <span class="set-size"> O total de telhas é de: </span>
+      <span class="metros-quadrados"> {{ totalTelhas }} </span>
+    </div>
+
+    <div class="d-flex flex-column" *ngIf="totalTelhas">
+      <span class="pt-3">
+        Nas obras sempre há um desperdício, neste cálculo usaremos 5% de
+        desperdício.
+      </span>
+
+      <button
+        class="mt-3 button-send"
+        (click)="calcularTotalTelhasDesperdicio()"
+      >
+        Calcular total com desperdício
+      </button>
+    </div>
+
+    <div class="d-flex flex-column" *ngIf="totalTelhaDesperdicio">
+      <h2 class="set-size mt-3">O total de telhas é:</h2>
+      <span class="metros-quadrados">
+        {{ totalTelhaDesperdicio }}
+      </span>
+    </div>
+  </form>
+</div>

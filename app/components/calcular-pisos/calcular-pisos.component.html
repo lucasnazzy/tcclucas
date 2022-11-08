@@ -1,0 +1,90 @@
+<div class="blocos-box">
+  <form [formGroup]="formPisos" *ngIf="formPisos">
+    <div *ngIf="!metrosDePisoCaixa?.pristine && metrosDePisoCaixa?.errors">
+      <p class="error-label" *ngIf="metrosDePisoCaixa?.errors?.required">
+        Metros de piso é obrigatório*.
+      </p>
+    </div>
+
+    <div class="input-box">
+      <label class="set-size" for="nome">
+        Digite a quantidade necessária em m2:
+      </label>
+      <input
+        class="input-style"
+        type="number"
+        formControlName="metrosDePiso"
+        id="metrosDePiso"
+        placeholder="Digite o metro quadrado"
+      />
+    </div>
+
+    <div class="mb-3 mt-3">
+      <h2 class="set-size">Deseja acrescentar os 10% para os rodapés?</h2>
+
+      <div class="box-buttons">
+        <button
+          [disabled]="metrosDePisoCaixa?.errors"
+          class="btn btn-primary mr-3 confirm-button"
+          (click)="rodapePorcentagem((porcantagemRodape = false))"
+        >
+          Sim
+        </button>
+
+        <button
+          class="btn btn-danger negative-button"
+          [disabled]="metrosDePisoCaixa?.errors"
+          (click)="rodapePorcentagem((porcantagemRodape = true))"
+        >
+          Não
+        </button>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        !quantidadePisoPorCaixa?.pristine && quantidadePisoPorCaixa?.errors
+      "
+    >
+      <p class="error-label" *ngIf="quantidadePisoPorCaixa?.errors?.required">
+        Quantidade de piso por caixa é obrigatório*.
+      </p>
+    </div>
+
+    <div class="input-box pb-2" *ngIf="validationRodape">
+      <label class="set-size" for="email"> M² de piso por caixa: </label>
+      <input
+        class="input-style"
+        type="number"
+        formControlName="quantidadePisoPorCaixa"
+        id="quantidadePisoPorCaixa"
+        placeholder="Digite o  comprimento"
+      />
+    </div>
+
+    <button
+      *ngIf="validationRodape"
+      class="mt-3 mb-3"
+      [disabled]="!formPisos.valid"
+      (click)="calcularPisos()"
+      [ngClass]="!formPisos.valid ? 'button-disabled' : 'button-send'"
+    >
+      Calcular
+    </button>
+
+    <div class="d-flex flex-column" *ngIf="pisosUsados">
+      <h2 class="set-size mt-3">
+        Esse é o numero de caixas de piso que vc precisa:
+      </h2>
+      <span class="metros-quadrados">
+        {{ pisosUsados }}
+      </span>
+    </div>
+
+    <div class="d-flex flex-column" *ngIf="totalUsadoNaObra">
+      <h2 class="set-size mt-3">
+        Então o total de metros de piso usados na obra é de:
+      </h2>
+      <span class="metros-quadrados"> {{ totalUsadoNaObra }}m² </span>
+    </div>
+  </form>
+</div>
