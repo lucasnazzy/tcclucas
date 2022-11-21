@@ -9,7 +9,9 @@
         </div>
 
         <div class="input-box pb-3">
-          <label class="input-title" for="nome">Digite a Largura: </label>
+          <label class="input-title" for="nome"
+            >Insira a largura do terreno:
+          </label>
           <input
             class="input-style"
             type="number"
@@ -26,7 +28,9 @@
         </div>
 
         <div class="input-box pb-2">
-          <label class="input-title" for="email">Digite o Comprimento: </label>
+          <label class="input-title" for="email"
+            >Insira o comprimento do terreno:
+          </label>
           <input
             class="input-style"
             type="number"
@@ -50,7 +54,7 @@
           </button>
 
           <div class="d-flex flex-column pt-3" *ngIf="telhaResult">
-            <span class="set-size"> A quantidade de metros quadrados é: </span>
+            <span class="set-size"> Você precisa de um telhado de: </span>
             <span class="metros-quadrados"> {{ telhaResult }} m² </span>
           </div>
         </div>
@@ -101,7 +105,9 @@
         </div>
 
         <h2 class="d-flex flex-column pt-3" *ngIf="areaTotal">
-          <span class="set-size"> Àrea total é de: </span>
+          <span class="set-size">
+            A Àrea total somando o terreno e a caida é de
+          </span>
           <span class="metros-quadrados"> {{ areaTotal }} m² </span>
         </h2>
       </div>
@@ -127,7 +133,7 @@
     </div>
 
     <div *ngIf="totalTelhas" class="d-flex flex-column pt-3">
-      <span class="set-size"> O total de telhas é de: </span>
+      <span class="set-size"> Total de telhas a ser usada será: </span>
       <span class="metros-quadrados"> {{ totalTelhas }} </span>
     </div>
 
@@ -146,7 +152,7 @@
     </div>
 
     <div class="d-flex flex-column" *ngIf="totalTelhaDesperdicio">
-      <h2 class="set-size mt-3">O total de telhas é:</h2>
+      <h2 class="set-size mt-3">O total de telhas com o disperdício é de:</h2>
       <span class="metros-quadrados">
         {{ totalTelhaDesperdicio }}
       </span>

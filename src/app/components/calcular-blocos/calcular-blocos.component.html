@@ -67,7 +67,7 @@
 
         <div class="input-box pb-2">
           <label class="set-size" for="email"
-            >Digite a quantidade em m² que você precisa:</label
+            >Digite a área que será preenchida com os blocos em m²:</label
           >
           <input
             class="input-style"
@@ -94,7 +94,9 @@
             <h2 class="set-size">
               A quantidade de blocos total que você precisa é:
             </h2>
-            <span class="result-box"> {{ metrosQuadradosUsados }} </span>
+            <span *ngIf="metrosQuadradosUsados" class="result-box">
+              {{ metrosQuadradosUsados }}
+            </span>
           </div>
         </div>
       </form>
